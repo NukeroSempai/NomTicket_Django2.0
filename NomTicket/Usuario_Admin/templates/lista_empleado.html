@@ -1,0 +1,58 @@
+{% extends "base_layout.html" %}
+
+{% block content %}
+<div class="row titulo">
+    <div class="titulo_texto">
+        <h1>Lista empleados</h1>
+    </div>
+</div>
+<div class="row centro">
+    <table id="tabl_lis_emp" class="table table-borderless">
+        <thead class="border-bottom font-weight-bold">
+            <tr>
+                <td>rut</td>
+                <td>Nombre</td>
+                <td>Apellido Paterno</td>
+                <td>Apellido Materno</td>
+                <td>Empresa</td>
+                <td>Perfil</td>
+                <td>Turno</td>
+                <td>saldo</td>
+                <td>email</td>
+                <td>
+                    <a href="{% url 'registrar_empleado' %}" class="btn btn-success btn-block btn-lg">
+                        <i class="fas fa-plus"></i> agregar nuevo
+                    </a>
+                </td>
+            </tr>
+        </thead>
+        <tbody id="tabl_lis_emp">
+            {% for EMPLEADO in empleados %}
+                <tr>
+                    <td>{{EMPLEADO.rut_emp}}</td>
+                    <td>{{EMPLEADO.nom_emp}}</td>
+                    <td>{{EMPLEADO.appaterno_emp}}</td>
+                    <td>{{EMPLEADO.apmaterno_emp}}</td>
+                    <td>{{EMPLEADO.fk_empresa}}</td>
+                    <td>{{EMPLEADO.fk_perfil}}</td>
+                    <td>{{EMPLEADO.fk_turno}}</td>
+                    <td>{{EMPLEADO.saldo}}</td>
+                    <td>{{EMPLEADO.email}}</td>
+                    <td>
+                        <a href="{% url 'modificar_empleado' EMPLEADO.codigo_emp %}" class="btn text-secondary px-0 ">
+                            <i class="far fa-edit fa-lg"></i>
+                        </a>
+                        <form action="{% url 'eliminar_empleado' EMPLEADO.codigo_emp %}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn">
+                                <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                            </button>
+                        </form>
+                    </td> 
+                    
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

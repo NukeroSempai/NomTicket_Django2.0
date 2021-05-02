@@ -1,0 +1,17 @@
+{% extends "base_layout.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!--nav class="navbar navbar-light bg-light">
+  <form class="container-fluid justify-content-start">
+    <a href="{% url 'logout' %}" class="btn btn-secondary btn-block btn-lg"><i class="fas fa-stream"></i>Salir</a>
+  </form>
+</nav-->
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    {{form|crispy}}
+    <div class="row centro">
+          <h1>BIENVENIDO VISITANTE</H1>
+    </div>
+    <a href="{% url 'logout' %}" class="btn btn-secondary btn-block btn-lg"><i class="fas fa-stream"></i>Salir</a>
+</form>
+{% endblock content %}

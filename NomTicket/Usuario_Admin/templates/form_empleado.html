@@ -1,0 +1,120 @@
+{% extends "base_layout.html" %}
+{% block content %}
+<div class="row titulo">
+    <div class="titulo_texto">
+        <h1>Registrarse</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <form action="" method="post" autocomplete="off">
+            {% csrf_token %}
+            <div id="div_id_rut_emp" class="form-group">
+                <label for="id_rut_emp" class=" requiredField">
+                    Rut empleado (sin puntos con guion)<span class="asteriskField">*</span>
+                </label>
+                <div class=""> <input type="text" name="rut_emp" maxlength="10" class="textinput textInput form-control"
+                        required="" id="id_rut_emp">
+                </div>
+            </div>
+            <div id="div_id_nom_emp" class="form-group">
+                <label for="id_nom_emp" class=" requiredField">
+                    Nombre<span class="asteriskField">*</span>
+                </label>
+                <div class=""> <input type="text" name="nom_emp" maxlength="30" class="textinput textInput form-control"
+                        required="" pattern="[a-zA-Z]+" id="id_nom_emp">
+                </div>
+            </div>
+            <div id="div_id_appaterno_emp" class="form-group">
+                <label for="id_appaterno_emp" class=" requiredField">
+                    Apellido paterno<span class="asteriskField">*</span>
+                </label>
+                <div class=""> <input type="text" name="appaterno_emp" maxlength="30"
+                        class="textinput textInput form-control" required="" pattern="[a-zA-Z]+" id="id_appaterno_emp">
+                </div>
+            </div>
+            <div id="div_id_apmaterno_emp" class="form-group">
+                <label for="id_apmaterno_emp" class=" requiredField">
+                    Apellido materno<span class="asteriskField">*</span>
+                </label>
+                <div class=""> <input type="text" name="apmaterno_emp" maxlength="30"
+                        class="textinput textInput form-control" required="" pattern="[a-zA-Z]+" id="id_apmaterno_emp">
+                </div>
+            </div>
+            <div id="div_id_clave" class="form-group">
+                <label for="id_clave" class=" requiredField">
+                    Clave<span class="asteriskField">*</span>
+                </label>
+                <div class=""> <input type="password" name="clave" class="textinput textInput form-control" required=""
+                        id="id_clave">
+                </div>
+            </div>
+            <div id="div_id_saldo" class="form-group">
+                <label for="id_saldo" class=" requiredField">
+                    cargar Saldo<span class="asteriskField">*</span>
+                </label>
+                <div class=""> <select name="saldo" class="select form-control" required="" id="id_saldo">
+                        <option value="" selected="">---------</option>
+                        <option value="264000">Administracion</option>
+                        <option value="276000">Operarios</option>
+                        <option value="378000">Jefaturas</option>
+                        <option value="450000">Gerente</option>
+
+                    </select> </div>
+            </div>
+            <div id="div_id_email" class="form-group">
+                <label for="id_email" class=" requiredField">
+                    Email empleado<span class="asteriskField">*</span>
+                </label>
+                <div class=""> <input type="email" name="email" maxlength="100" class="emailinput form-control"
+                        required="" id="id_email">
+                </div>
+            </div>
+            <div id="div_id_fk_empresa" class="form-group">
+                <label for="id_fk_empresa" class=" requiredField">
+                    Fk empresa<span class="asteriskField">*</span>
+                </label>
+                <div class=""> <select name="fk_empresa" class="select form-control" required="" id="id_fk_empresa">
+                        <option value="" selected="">---------</option>
+                        <option value="1">Libros Impresos S.A</option>
+
+                    </select> </div>
+            </div>
+            <div id="div_id_fk_perfil" class="form-group">
+                <label for="id_fk_perfil" class=" requiredField">
+                    Fk perfil<span class="asteriskField">*</span>
+                </label>
+                <div class=""> <select name="fk_perfil" class="select form-control" required="" id="id_fk_perfil">
+                        <option value="" selected="">---------</option>
+                        <option value="2">Jefaturas</option>
+                        <option value="3">Administración</option>
+                        <option value="4">Operarios</option>
+                        <option value="1">Gerente</option>
+
+                    </select> </div>
+            </div>
+            <div id="div_id_fk_turno" class="form-group">
+                <label for="id_fk_turno" class=" requiredField">
+                    Fk turno<span class="asteriskField">*</span>
+                </label>
+                <div class=""> <select name="fk_turno" class="select form-control" required="" id="id_fk_turno">
+                        <option value="" selected="">---------</option>
+                        <option value="1">Turno AM</option>
+                        <option value="2">Turno PM</option>
+                        <option value="3">Turno NOCHE</option>
+
+                    </select> </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>
+                        Guardar</button>
+                </div>
+                <div class="col-md-4">
+                    <a href="/lista/" class="btn btn-secondary btn-block btn-lg">
+                        <i class="fas fa-stream"></i> Lista
+                    </a>
+                </div>
+            </div>
+        </form>
+        {% endblock content %}

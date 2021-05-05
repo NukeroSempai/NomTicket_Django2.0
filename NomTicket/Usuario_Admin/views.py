@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import empleadoForm, loginEmpForm
-from .models import EMPLEADO
+from CORE.models import EMPLEADO
 from django.contrib import messages
 from datetime import date
 from datetime import datetime
@@ -33,12 +33,12 @@ def form_empleado(request, id=0):
             form = empleadoForm(request.POST,instance= empleado)
         if form.is_valid():
             form.save()
-        return redirect('lista')
+        return redirect('/lista')
                
 def eliminar_empleado(request,id):
     Empleado = EMPLEADO.objects.get(pk=id)
     Empleado.delete()
-    return redirect('lista')
+    return redirect('/lista')
 
 def logout(request): 
     return redirect("/")

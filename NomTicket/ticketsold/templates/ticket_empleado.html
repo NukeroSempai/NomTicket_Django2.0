@@ -1,0 +1,32 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+<div class="row titulo">
+  <div class="titulo-texto">
+    <h1>TICKET</h1>
+  </div>
+</div>
+
+<div class="row login-status">
+  <div class="col-xl-10 bienvenido">
+    <p>BIENVENIDO {{ user.get_username }}</p>
+    {% for EMPLEADO in empleados %}
+    <td>BIENVENIDO: {{EMPLEADO.nom_emp| upper}}</td>
+    {% endfor %}
+  </div>
+  <div class="col-xl-2 boton-salir">
+    <a class="btn btn-primary" href="{% url 'logout' %}" role="button">Salir</a>
+  </div>
+</div>
+
+<div class="row centro">
+
+  <div class="col producto">
+    <div class="row">
+      Fecha emisión: {{ }}
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}

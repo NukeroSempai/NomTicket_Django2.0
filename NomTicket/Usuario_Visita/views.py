@@ -1,6 +1,5 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import empleadoForm, loginEmpForm
 from CORE.models import EMPLEADO
 from django.contrib import messages
 from datetime import date

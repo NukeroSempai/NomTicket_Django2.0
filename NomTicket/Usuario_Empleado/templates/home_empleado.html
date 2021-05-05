@@ -10,33 +10,40 @@
     {% csrf_token %}
     {{form|crispy}}
     <div class="row centro">
-    <table id='tablaemp'>
-        <tbody>
-            {% for EMPLEADO in empleados %}                
-                    <tr>                
-                        {% for message in messages %}
-                            <td>{{ message }}</td> 
-                        {% endfor %}
-                    </tr>
-                    <tr>
-                        <td>BIENVENIDO: {{EMPLEADO.nom_emp| upper}}</td>
-                    </tr>
-                    <tr>
-                        <td>EMPRESA: {{EMPLEADO.fk_empresa}}</td>
-                    </tr>               
-                    <tr>
-                        <td>CARGO: {{EMPLEADO.fk_perfil}}</td>
-                    </tr>
-                    <tr>
-                        <td>TURNO:{{EMPLEADO.fk_turno}}</td>
-                    </tr>
-                    <tr>
-                        <td>SU SALDO ES: {{EMPLEADO.saldo}}</td>
-                    </tr>                                                      
-            {% endfor %}
-        </tbody>
-    </table>
+        <table id='tablaemp'>
+            <tbody>
+                {% for EMPLEADO in empleados %}
+                <tr>
+                    {% for message in messages %}
+                    <td>{{ message }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>BIENVENIDO: {{EMPLEADO.nom_emp| upper}}</td>
+                </tr>
+                <tr>
+                    <td>EMPRESA: {{EMPLEADO.fk_empresa}}</td>
+                </tr>
+                <tr>
+                    <td>CARGO: {{EMPLEADO.fk_perfil}}</td>
+                </tr>
+                <tr>
+                    <td>TURNO:{{EMPLEADO.fk_turno}}</td>
+                </tr>
+                <tr>
+                    <td>SU SALDO ES: {{EMPLEADO.saldo}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-    <a href="{% url 'logout' %}" class="btn btn-secondary btn-block btn-lg"><i class="fas fa-stream"></i>Salir</a>
+    <div class="row login-status">
+        <div class="col-sm-3 boton-tickets-emitidos">
+            <a href="{% url 'empleado' %}" class="btn btn-primary ">Emitir Ticket</a>
+        </div>
+        <div class="col-sm-3 boton-tickets-emitidos">
+            <a href="{% url 'lista_productos' %}" class="btn btn-primary ">Lista productos</a>
+        </div>
+    </div>
 </form>
 {% endblock content %}

@@ -1,0 +1,62 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    <div class="row titulo">
+        <div class="titulo-texto">
+            <h1>LISTA PRODUCTOS</h1>
+        </div>
+    </div>
+
+    <div class="row login-status">
+        <div class="col-sm-10 bienvenido">
+            
+        </div>
+        <div class="col-sm-2 boton-tickets-emitidos">
+            <a class="btn btn-primary" href="{% url 'empleado' %}" role="button">Atrás</a>
+        </div>
+    </div>
+
+    <div class="row centro">
+
+        <div class="col producto">
+            <div class="row">
+              <div class="campos-producto">
+                <div class="row">
+                  <div class="col-sm-1 campo-texto">
+                    <p>CÓD.</p>
+                  </div>
+                  <div class="col-sm-3 campo-texto">
+                    <p>PRODUCTO</p>
+                  </div>
+                  <div class="col-sm-6 campo-texto">
+                    <p>DESCRIPCIÓN</p>
+                  </div>
+                  <div class="col-sm-2 campo-texto">
+                    <p>PRECIO</p>
+                  </div>
+                </div>
+              </div>
+              <div class="producto-lista">
+                {% for producto in productos %}
+                <div class="row producto-entry">
+                  <div class="col-sm-1 campo">
+                    <p>{{ producto.codigo_producto }}</p>
+                  </div>
+                  <div class="col-sm-3 campo">
+                    <p>{{ producto.nom_producto }}</p>
+                  </div>
+                  <div class="col-sm-6 campo desc">
+                    <p>{{ producto.descripcion }}</p>
+                  </div>
+                  <div class="col-sm-2 campo">
+                    <p>$ {{ producto.precio }}</p>
+                  </div>
+                </div>
+                {% endfor %}  
+              </div>
+            </div> 
+      
+        </div>
+
+    </div>
+{% endblock %}

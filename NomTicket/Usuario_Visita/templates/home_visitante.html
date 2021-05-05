@@ -7,11 +7,19 @@
   </form>
 </nav-->
 <form action="" method="post" autocomplete="off">
-    {% csrf_token %}
-    {{form|crispy}}
-    <div class="row centro">
-          <h1>BIENVENIDO VISITANTE</H1>
+  {% csrf_token %}
+  {{form|crispy}}
+  <div class="row centro">
+    <h1>BIENVENIDO VISITANTE</H1>
+  </div>
+  <div class="row login-status">
+    <div class="col-sm-3 boton-tickets-emitidos">
+      <a href="{% url 'empleado' %}" class="btn btn-primary">Emitir Ticket</a>
     </div>
-    <a href="{% url 'logout' %}" class="btn btn-secondary btn-block btn-lg"><i class="fas fa-stream"></i>Salir</a>
+    <div class="col-sm-3 boton-tickets-emitidos">
+      <a href="{% url 'lista_productos' %}" class="btn btn-primary">Lista productos</a>
+    </div>
+  </div>
+
 </form>
 {% endblock content %}

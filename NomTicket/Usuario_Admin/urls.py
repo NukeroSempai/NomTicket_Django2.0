@@ -19,7 +19,6 @@ from . import views
 from django.contrib.auth.views import LoginView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', views.inicio,name="inicio"),
     path('registrar/', views.form_empleado, name="registrar_empleado"),
     path('<int:id>/', views.form_empleado, name="modificar_empleado"),

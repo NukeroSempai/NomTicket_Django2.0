@@ -221,3 +221,30 @@ a, a:hover, a:visited{
 #tabl_lis_emp{
     color:#fff;
 }
+nav.navbar {
+    background-color: #e7a559;
+}
+.btn-outline-success{
+    color:#ff290d;
+    border-color:antiquewhite;
+    background-color: transparent !important;
+}
+.btn{
+    color:#fff;
+    border: 10px;
+}
+.btn-outline-secondary {
+    color: #fff;
+    border-color: #866e60;
+}
+.boton-tickets-emitidos .btn{
+    background-color: #d15b00;
+    border-color: #fff;
+    font-size: 18px;
+    width: 240px;
+    height: 40px;
+    float: right;
+}
+/*.header .navbar {
+    background-color: transparent !important;
+}*/

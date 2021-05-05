@@ -1,10 +1,12 @@
 from django.shortcuts import render,redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import empleadoForm, loginEmpForm
-from CORE.models import EMPLEADO
+from CORE.models import EMPLEADO,PRODUCTO, TICKET
 from django.contrib import messages
 from datetime import date
 from datetime import datetime
+
 
 def lista_empleado(request):
     empleados =  EMPLEADO.objects.all()
@@ -55,7 +57,7 @@ def login_empleado(request):
                 today = date.today()
                 now = datetime.now()
                 formato = now.strftime('%d/%m/%Y-%H:%M:%S')                
-                messages.info(request, f'Fecha: {formato}')
+                messages.info(request, f'FECHA: {formato}')
                 empleados =  EMPLEADO.objects.filter(rut_emp = rut_emp)
                 data = {
                         'empleados' : empleados
@@ -75,15 +77,6 @@ def login_empleado(request):
 def home_empleado(request):
     return render(request,"home_empleado.html")
 
-def login_visitante(request):   
-    return render(request,"login_visitante.html")
-
-def home_admin(request):
-    return render(request,"home_admin.html")
-
-def home_visitante(request):
-    return render(request,"home_visitante.html")
-
 def inicio(request):
     return render(request, 'inicio.html')
 
@@ -93,8 +86,20 @@ def tickets_emitidos(request):
 def empleado(request):
     return render(request, 'empleado.html')
 
-def login_visitante(request):   
-    return render(request,"login_visitante.html")
-
 def visitante(request):
     return render(request, 'visitante.html')
+
+#@login_required(login_url='')
+def tickets_emitidos(request):
+    tickets = TICKET.objects.all().order_by('fecha_imp')
+    return render(request, 'lista_tickets_emitidos.html', {'tickets' : tickets })
+
+#@login_required(login_url='')
+def empleado(request):
+    #productos = PRODUCTO.objects.all().order_by('codigo_producto')
+    productos = PRODUCTO.objects.all().order_by('codigo_producto')
+    return render(request, 'empleado.html', {'productos' : productos })
+
+#@login_required(login_url='')
+def ticket_empleado(request):
+    return render(request, 'ticket_empleado.html')

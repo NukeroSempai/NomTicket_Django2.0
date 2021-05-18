@@ -18,8 +18,19 @@
       {% endfor %}
       </ul>
       {% csrf_token %}
-      {{form|crispy}}
-      <button type="submit" class="btn btn-primary">Ingresar</button>
+      <div class="mb-3">
+        <div id="div_id_rut_emp" class="form-group"> <label for="id_rut_emp" class=" requiredField">
+            Rut empleado (sin puntos con guion)<span class="asteriskField">*</span> </label>
+          <div class=""> <input type="text" name="rut_emp" maxlength="10" class="textinput textInput form-control"
+              required oninput="checkRut(this)" id="id_rut_emp"> </div>
+        </div>
+        <div id="div_id_clave" class="form-group"> <label for="id_clave" class=" requiredField">
+            Clave<span class="asteriskField">*</span> </label>
+          <div class=""> <input type="password" name="clave" class="textinput textInput form-control" required=""
+              id="id_clave"> </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Ingresar</button>
+      </div>
     </form>
   </div>
 </div>

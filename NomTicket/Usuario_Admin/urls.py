@@ -15,16 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from . import views
+from .import views
 from django.contrib.auth.views import LoginView
 
 urlpatterns = [
     path('', views.inicio,name="inicio"),
-    path('registrar/', views.form_empleado, name="registrar_empleado"),
-    path('<int:id>/', views.form_empleado, name="modificar_empleado"),
+    path('registrar/', views.registrar_empleado, name="registrar_empleado"),
+    #path('<int:id>/', views.registrar_empleado, name="modificar_empleado"),
     path('delete/<int:id>/', views.eliminar_empleado, name='eliminar_empleado'),
     path('lista/', views.lista_empleado, name="lista_empleado"),
     path('home_admin/', views.home_admin, name="home_admin"),
     path('login_admin/',LoginView.as_view(template_name='login_admin.html'), name="login_admin"),
+    path('agregar_empleado',views.agregar_empleado, name="agregar_empleado"),
+    path('modificar_empleado/<id>',views.modificar_empleado, name='modificar_empleado'),
     
 ]

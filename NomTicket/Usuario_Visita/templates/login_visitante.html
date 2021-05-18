@@ -9,14 +9,12 @@
 
 <div class="row centro">
   <div class="col-lg-4 formulario-login">
-    <!--form action="{% url 'home_visitante' %}"-->
     <form action="{% url 'home_visitante' %}" method="post" >
       {% csrf_token %}
       {{form|crispy}}
       <div class="mb-3">
         <label for="rut" class=" requiredField" >INGRESE RUT</label>
-        <input type="text" id="rut" name="rut" placeholder="Ingrese RUT">
-        <!--input type="text" id="rut" name="rut" required oninput="checkRut(this)" placeholder="Ingrese RUT"-->
+        <input type="text" id="rut" name="rut" maxlength="10" class="textinput textInput form-control" required oninput="checkRut(this)" placeholder="Ingrese RUT">
         <button type="submit"  class="btn btn-primary">Ingresar</button>
       </div>
     </form>

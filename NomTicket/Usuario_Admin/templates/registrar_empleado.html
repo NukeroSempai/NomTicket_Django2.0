@@ -7,15 +7,16 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-8">
-        <form action="" method="post" autocomplete="off">
+    <div class="col-12 col-md-6 offset-md-3">
+        <form action=""class="" method="post" >
             {% csrf_token %}
+            
             <div id="div_id_rut_emp" class="form-group">
                 <label for="id_rut_emp" class=" requiredField">
                     Rut empleado (sin puntos con guion)<span class="asteriskField">*</span>
                 </label>
                 <div class=""> <input type="text" name="rut_emp" maxlength="10" class="textinput textInput form-control"
-                        required="" id="id_rut_emp">
+                        required oninput="checkRut(this)" id="id_rut_emp">
                 </div>
             </div>
             <div id="div_id_nom_emp" class="form-group">
@@ -56,10 +57,10 @@
                 </label>
                 <div class=""> <select name="saldo" class="select form-control" required="" id="id_saldo">
                         <option value="" selected="">---------</option>
-                        <option value="264000">Administracion"264000"</option>
-                        <option value="276000">Operarios"276000"</option>
+                        <option value="264000">Administración"264000"</option>
                         <option value="378000">Jefaturas"378000"</option>
                         <option value="450000">Gerente"450000"</option>
+                        <option value="276000">Operarios"276000"</option>
 
                     </select> </div>
             </div>
@@ -87,10 +88,10 @@
                 </label>
                 <div class=""> <select name="fk_perfil" class="select form-control" required="" id="id_fk_perfil">
                         <option value="" selected="">---------</option>
+                        <option value="1">Administración</option>
                         <option value="2">Jefaturas</option>
-                        <option value="3">Administración</option>
+                        <option value="3">Gerente</option>
                         <option value="4">Operarios</option>
-                        <option value="1">Gerente</option>
 
                     </select> </div>
             </div>
@@ -112,10 +113,12 @@
                         Guardar</button>
                 </div>
                 <div class="col-md-4">
-                    <a href="/lista/" class="btn btn-secondary btn-block btn-lg">
+                    <a href="{% url 'lista_empleado' %}" class="btn btn-secondary btn-block btn-lg">
                         <i class="fas fa-stream"></i> Lista
                     </a>
                 </div>
             </div>
         </form>
-        {% endblock content %}
+    </div>
+</div>    
+{% endblock content %}

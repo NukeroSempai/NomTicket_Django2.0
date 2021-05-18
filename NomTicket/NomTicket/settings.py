@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
 # Application definition
 
@@ -136,3 +137,5 @@ STATICFILES_DIRS = [
 LOGIN_REDIRECT_URL='/Usuario_Admin/home_admin'
 
 LOGOUT_REDIRECT_URL='/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

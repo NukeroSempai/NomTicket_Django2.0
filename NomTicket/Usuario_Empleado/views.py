@@ -1,105 +1,82 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import empleadoForm, loginEmpForm
-from CORE.models import EMPLEADO,PRODUCTO, TICKET
+from CORE.models import EMPLEADO, PRODUCTO, TICKET
 from django.contrib import messages
 from datetime import date
 from datetime import datetime
 
-
-def lista_empleado(request):
-    empleados =  EMPLEADO.objects.all()
-    #empleados =  EMPLEADO.objects.filter(nom_emp = 'juan')
-    data = {
-        'empleados' : empleados
-    }
-    return render(request,"lista_empleado.html", data)
-
-def form_empleado(request, id=0):
-    if request.method == "GET":
-        if id == 0:
-            form = empleadoForm()
-        else:
-            empleado = EMPLEADO.objects.get(pk=id)
-            form = empleadoForm(instance=empleado)
-        return render(request,"form_empleado.html",{'form':form})
-    else:
-        if id == 0:
-            form = empleadoForm(request.POST)
-        else:
-            empleado = EMPLEADO.objects.get(pk=id)
-            form = empleadoForm(request.POST,instance= empleado)
-        if form.is_valid():
-            form.save()
-        return redirect('/lista')
-               
-def eliminar_empleado(request,id):
-    Empleado = EMPLEADO.objects.get(pk=id)
-    Empleado.delete()
-    return redirect('/lista')
-
+#v_global
+g_rut_emp = ""
 
 def inicio(request):
     return render(request, 'inicio.html')
 
-def logout(request): 
+
+def logout(request):
     return redirect("/")
 
+
 def login_empleado(request):
-    if request.method =='POST':
-        form = loginEmpForm(request.POST) 
+    if request.method == 'POST':
+        form = loginEmpForm(request.POST)
         if form.is_valid:
-            rut_emp = request.POST['rut_emp']
-            clave = request.POST['clave']            
-            verificar = EMPLEADO.objects.filter(rut_emp= rut_emp, clave= clave).exists()            
-            if verificar == True:   
+            global g_rut_emp
+            g_rut_emp = request.POST['rut_emp']
+            clave = request.POST['clave']
+            verificar = EMPLEADO.objects.filter(rut_emp=g_rut_emp, clave=clave).exists()
+            if verificar == True:
                 today = date.today()
                 now = datetime.now()
-                formato = now.strftime('%d/%m/%Y-%H:%M:%S')                
+                formato = now.strftime('%d/%m/%Y-%H:%M:%S')
                 messages.info(request, f'FECHA: {formato}')
-                empleados =  EMPLEADO.objects.filter(rut_emp = rut_emp)
+                empleados = EMPLEADO.objects.filter(rut_emp=g_rut_emp)
                 data = {
-                        'empleados' : empleados
+                    'empleados': empleados
                 }
-                print ("primero")
-                return render(request,"home_empleado.html", data)               
+                print("primero")
+                return render(request, "home_empleado.html", data)
             else:
-                print ("segundo")
-                messages.error(request,'Por favor, introduzca un nombre de usuario y clave correctos.Observe que ambos campos pueden ser sensibles a mayúsculas.')      
-                return redirect('/login_empleado')  
-    else:    
+                print("segundo")
+                messages.error(
+                    request, 'Por favor, introduzca un nombre de usuario y clave correctos.Observe que ambos campos pueden ser sensibles a mayúsculas.')
+                return redirect('/login_empleado')
+    else:
         form = loginEmpForm
-        print ("tercero")
-        return render(request,"login_empleado.html", {'form':form})
+        print("tercero")
+        return render(request, "login_empleado.html", {'form': form})
+
+
+def prueba(request):
+    global g_rut_emp
+    print(g_rut_emp)
+    empleados = EMPLEADO.objects.filter(rut_emp=g_rut_emp)
+    data = {
+        'empleados': empleados
+    }
+    return render(request, "prueba.html", data)
 
 
 def home_empleado(request):
-    return render(request,"home_empleado.html")
+    return render(request, "home_empleado.html")
 
-def inicio(request):
-    return render(request, 'inicio.html')
 
-def tickets_emitidos(request):
-    return render(request, 'lista_tickets_emitidos.html')
-
-def empleado(request):
-    return render(request, 'empleado.html')
-
-def visitante(request):
-    return render(request, 'visitante.html')
-
-#@login_required(login_url='')
-def tickets_emitidos(request):
-    tickets = TICKET.objects.all().order_by('fecha_imp')
-    return render(request, 'lista_tickets_emitidos.html', {'tickets' : tickets })
-
-#@login_required(login_url='')
-def empleado(request):
-    #productos = PRODUCTO.objects.all().order_by('codigo_producto')
+#@login_required(login_url='home')
+def lista_productos(request):
+    global g_rut_emp
+    if g_rut_emp !=" ":
+        print(g_rut_emp)
+    empleados = EMPLEADO.objects.filter(rut_emp=g_rut_emp)
+    data = {
+        'empleados': empleados
+    }
     productos = PRODUCTO.objects.all().order_by('codigo_producto')
-    return render(request, 'empleado.html', {'productos' : productos })
+    if productos!="":
+        producto = PRODUCTO.objects.get(codigo_producto=1)
+        print(producto)
+    context =  {'empleados': empleados , 'productos' : productos}
+    return render(request, 'lista_productos.html',context)
+    
+    
 
-#@login_required(login_url='')
-def ticket_empleado(request):
-    return render(request, 'ticket_empleado.html')

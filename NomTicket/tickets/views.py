@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from CORE.models import PRODUCTO, TICKET, EMPLEADO
-from . forms import CrearTicket
+from .forms import CrearTicket
+from django.contrib import messages
 
 # Create your views here.
 
@@ -18,9 +19,11 @@ def empleado(request):
 
 
 #@login_required(login_url='home')
-def lista_productos(request):
-    productos = PRODUCTO.objects.all().order_by('codigo_producto')
-    return render(request, 'tickets/lista_productos.html', {'productos' : productos })
+#def lista_productos(request):
+#    productos = PRODUCTO.objects.all().order_by('codigo_producto')
+#    producto = PRODUCTO.objects.get(codigo_producto=1)
+#    print(producto)
+#    return render(request, 'tickets/lista_productos.html', {'productos' : productos })
 
 
 #@login_required(login_url='home')

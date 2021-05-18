@@ -19,7 +19,7 @@
                     {% endfor %}
                 </tr>
                 <tr>
-                    <td>BIENVENIDO: {{EMPLEADO.nom_emp| upper}}</td>
+                    <td>BIENVENIDO:{{EMPLEADO.nom_emp| upper}} {{ EMPLEADO.appaterno_emp| upper}}</td>
                 </tr>
                 <tr>
                     <td>EMPRESA: {{EMPLEADO.fk_empresa}}</td>
@@ -31,7 +31,7 @@
                     <td>TURNO:{{EMPLEADO.fk_turno}}</td>
                 </tr>
                 <tr>
-                    <td>SU SALDO ES: {{EMPLEADO.saldo}}</td>
+                    <td>SU SALDO ES: $ {{EMPLEADO.saldo}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -42,7 +42,7 @@
             <a href="{% url 'empleado' %}" class="btn btn-primary ">Emitir Ticket</a>
         </div>
         <div class="col-sm-3 boton-tickets-emitidos">
-            <a href="{% url 'lista_productos' %}" class="btn btn-primary ">Lista productos</a>
+            <a href="{% url 'lista_productos' %}" class="btn btn-primary ">Lista Productos</a>
         </div>
     </div>
 </form>

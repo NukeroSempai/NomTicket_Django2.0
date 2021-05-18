@@ -40,9 +40,8 @@ function checkRut(rut) {
     dv = (dv == 0)?11:dv;
     
     // Validar que el Cuerpo coincide con su Dígito Verificador
-    if(dvEsperado != dv) { rut.setCustomValidity("RUT Inválido");
-        return false; }
+    if(dvEsperado != dv) { rut.setCustomValidity("RUT Inválido"); return false; }
     
     // Si todo sale bien, eliminar errores (decretar que es válido)
-    rut.setCustomValidity('RUT Valido');
+    rut.setCustomValidity('');
 }

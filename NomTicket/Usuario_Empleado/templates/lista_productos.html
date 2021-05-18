@@ -1,5 +1,5 @@
 {% extends 'base_layout.html' %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 <div class="row titulo">
   <div class="titulo-texto">
@@ -15,6 +15,32 @@
     <a class="btn btn-primary" href="javascript:history.back()" role="button">Atrás</a>
   </div>
 </div>
+<form action="" method="post" autocomplete="off">
+  {% csrf_token %}
+  {{form|crispy}}
+  <div class="row centro">
+    <table id='tablaemp'>
+      <tbody>
+        {% for EMPLEADO in empleados %}
+        <tr>
+          <td>EMPLEADO: {{EMPLEADO.nom_emp| upper}} {{ EMPLEADO.appaterno_emp| upper}}</td>
+        </tr>
+        <tr>
+          <td>SU SALDO ES: ${{EMPLEADO.saldo}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="row login-status">
+    <div class="col-sm-3 boton-tickets-emitidos">
+      <a href="{% url 'empleado' %}" class="btn btn-primary ">Emitir Ticket</a>
+    </div>
+    <div class="col-sm-3 boton-tickets-emitidos">
+      <a href="{% url 'lista_productos' %}" class="btn btn-primary ">Lista Productos</a>
+    </div>
+  </div>
+</form>
 
 <div class="row centro">
 
@@ -38,7 +64,7 @@
             <p>SELEC.</p>
           </div>
           <div class="col-sm-1 campo-texto">
-            <p>total</p>
+            <p>TOTAL</p>
           </div>
         </div>
       </div>
@@ -58,10 +84,10 @@
             <p>$ {{ producto.precio }}</p>
           </div>
           <div class="col-sm-1 campo">
-            <input type="checkbox" checked="{{ producto.codigo_producto }}" name="producto">
+            <input type="checkbox"  name="producto">
           </div>
           <div class="col-sm-1 campo">
-            <p>{{ producto.codigo_producto }}</p>
+            <p>{{ producto.codigo_producto }}  {{ producto.nom_producto }}</p>
           </div>
         </div>
         {% endfor %}

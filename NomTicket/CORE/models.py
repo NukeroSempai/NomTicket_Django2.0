@@ -254,9 +254,9 @@ class ERRORES(models.Model):
 class INFORME_TICKET(models.Model):
     correlativo_inf = models.AutoField(primary_key=True)    #clave primaria
     fecha_informe = models.DateField("fecha informe",auto_now=False,auto_now_add=True,null=False)
-    fecha_inicio = models.DateField("fecha inicio",auto_now=False,auto_now_add=True,null=False)
-    fecha_termino = models.DateField("fecha termino",auto_now=False,auto_now_add=True,null=False)
-    tipo_servicio = models.ForeignKey(TIPO_PRODUCTO,on_delete=models.PROTECT,null=True)
+    rango_inicio = models.DateField("fecha inicio",auto_now=False,auto_now_add=True,null=False)
+    rango_termino = models.DateField("fecha termino",auto_now=False,auto_now_add=True,null=False)
+    tipo_informe = models.CharField("tipo informe",null=False,max_length=150)
     cant_boletas = models.PositiveIntegerField("cantidad de boletas")
     cant_tickets = models.PositiveIntegerField("cantidad de tickets")
     total_ventas = models.PositiveIntegerField("total de ventas")
@@ -266,8 +266,21 @@ class INFORME_TICKET(models.Model):
         verbose_name_plural="informes tickets"
         db_table="INFORME_TICKET"
     
-    def __str__(self)        :
+    def __str__(self):
         return f"{self.correlativo_inf},{self.fecha_informe},{self.total_ventas}"
+#**************************************************************************************************************
+class DETALLE_INFORME(models.Model):
+    id_detalle = models.AutoField(primary_key=True)    #clave primaria
+    fk_correlativo_inf = models.ForeignKey(INFORME_TICKET,on_delete=models.PROTECT,null=False)
+    fk_num_boleta = models.ForeignKey(BOLETA,on_delete=models.PROTECT,null=False)
+
+    class Meta:
+        verbose_name ="detalle informe"
+        verbose_name_plural="detalles de informes"
+        db_table="DETALLE_INFORME"
+    
+    def __str__(self):
+        return self.id_detalle
 #**************************************************************************************************************
 class VISITANTE(models.Model):
     rut_visitante = models.CharField("rut visitante (sin puntos con guion",primary_key=True,null=False,blank=False,max_length=10) #clave primaria

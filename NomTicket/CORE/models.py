@@ -91,12 +91,12 @@ class EMPLEADO(models.Model):
     nom_emp = models.CharField("nombre",max_length=30,null=False,blank=False)
     appaterno_emp = models.CharField("apellido paterno",max_length=30,null=False,blank=False)
     apmaterno_emp = models.CharField("apellido materno",max_length=30,null=False,blank=False)
-    clave = EncryptedCharField(max_length=50)
+    #clave = models.CharField("contraseña",max_length=50,null=False,blank=False)
     saldo = models.PositiveIntegerField("cargar saldo",null=True)
     email = models.EmailField("email empleado",max_length=100,null=True,blank=False)
-    fk_empresa = models.ForeignKey(EMPRESA,on_delete=models.PROTECT,null=False,help_text="Empresa")
-    fk_perfil = models.ForeignKey(PERFIL,on_delete=models.PROTECT,null=False,help_text="Prefil")
-    fk_turno = models.ForeignKey(TURNO,on_delete=models.PROTECT,null=False,help_text="Turno")
+    fk_empresa = models.ForeignKey(EMPRESA,on_delete=models.PROTECT,null=False,verbose_name="Empresa")
+    fk_perfil = models.ForeignKey(PERFIL,on_delete=models.PROTECT,null=False,verbose_name="Perfil")
+    fk_turno = models.ForeignKey(TURNO,on_delete=models.PROTECT,null=False,verbose_name="Turno")
 
     class Meta:
         verbose_name ="empleado"

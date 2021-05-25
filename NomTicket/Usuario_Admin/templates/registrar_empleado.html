@@ -10,6 +10,7 @@
     <div class="col-12 col-md-6 offset-md-3">
         <form action=""class="" method="post" >
             {% csrf_token %}
+            <!--{{ form | crispy}}-->
             
             <div id="div_id_rut_emp" class="form-group">
                 <label for="id_rut_emp" class=" requiredField">
@@ -24,7 +25,7 @@
                     Nombre<span class="asteriskField">*</span>
                 </label>
                 <div class=""> <input type="text" name="nom_emp" maxlength="30" class="textinput textInput form-control"
-                        required="" pattern="[a-zA-Z]+" id="id_nom_emp">
+                        required="" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" id="id_nom_emp">
                 </div>
             </div>
             <div id="div_id_appaterno_emp" class="form-group">
@@ -32,7 +33,7 @@
                     Apellido paterno<span class="asteriskField">*</span>
                 </label>
                 <div class=""> <input type="text" name="appaterno_emp" maxlength="30"
-                        class="textinput textInput form-control" required="" pattern="[a-zA-Z]+" id="id_appaterno_emp">
+                        class="textinput textInput form-control" required="" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" id="id_appaterno_emp">
                 </div>
             </div>
             <div id="div_id_apmaterno_emp" class="form-group">
@@ -40,7 +41,7 @@
                     Apellido materno<span class="asteriskField">*</span>
                 </label>
                 <div class=""> <input type="text" name="apmaterno_emp" maxlength="30"
-                        class="textinput textInput form-control" required="" pattern="[a-zA-Z]+" id="id_apmaterno_emp">
+                        class="textinput textInput form-control" required="" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" id="id_apmaterno_emp">
                 </div>
             </div>
             <div id="div_id_clave" class="form-group">

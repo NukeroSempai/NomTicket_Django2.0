@@ -26,7 +26,6 @@ urlpatterns = [
     path('lista/', views.lista_empleado, name="lista_empleado"),
     path('home_admin/', views.home_admin, name="home_admin"),
     path('login_admin/',LoginView.as_view(template_name='login_admin.html'), name="login_admin"),
-    path('agregar_empleado',views.agregar_empleado, name="agregar_empleado"),
     path('modificar_empleado/<id>',views.modificar_empleado, name='modificar_empleado'),
     
 ]

@@ -6,6 +6,7 @@ from CORE.models import EMPLEADO, PRODUCTO, TICKET
 from django.contrib import messages
 from datetime import date
 from datetime import datetime
+from django.contrib.auth.hashers import check_password
 
 #v_global
 g_rut_emp = ""
@@ -25,8 +26,19 @@ def login_empleado(request):
             global g_rut_emp
             g_rut_emp = request.POST['rut_emp']
             clave = request.POST['clave']
-            verificar = EMPLEADO.objects.filter(rut_emp=g_rut_emp, clave=clave).exists()
-            if verificar == True:
+            empleados = EMPLEADO.objects.filter(rut_emp = g_rut_emp)
+            data = {
+                'empleados' : empleados
+            }
+            for empleado in empleados:
+                clave_emp=empleado.clave
+                print("nom_emp",g_rut_emp)
+                print("clave",clave)
+                print ("clave_emp",clave_emp)
+            if check_password(clave, clave_emp):
+                print("si")
+            #verificar = EMPLEADO.objects.filter(rut_emp=g_rut_emp, clave=clave).exists()
+            #if verificar == True:
                 today = date.today()
                 now = datetime.now()
                 formato = now.strftime('%d/%m/%Y-%H:%M:%S')
@@ -38,6 +50,7 @@ def login_empleado(request):
                 print("primero")
                 return render(request, "home_empleado.html", data)
             else:
+                print("no")
                 print("segundo")
                 messages.error(
                     request, 'Por favor, introduzca un nombre de usuario y clave correctos.Observe que ambos campos pueden ser sensibles a mayúsculas.')

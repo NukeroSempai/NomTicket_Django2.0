@@ -1,0 +1,22 @@
+{% extends 'base_layout.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-lg-12 titulo-bienvenido">
+    <h1>Bienvenido</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12 menu-inicial">
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+        <strong>INGRESAR</strong>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
+        <li><a class="dropdown-item" href="{% url 'login_empleado' %}">EMPLEADO</a></li>
+        <li><a class="dropdown-item" href="{% url 'login_admin' %}">ADMINISTRADOR</a></li>
+        <li><a class="dropdown-item" href="{% url 'login_visitante' %}">VISITANTE</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock content %}

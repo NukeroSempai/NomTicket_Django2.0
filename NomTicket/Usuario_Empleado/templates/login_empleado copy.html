@@ -1,0 +1,26 @@
+{% extends 'base_layout.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row titulo">
+  <div class="titulo-texto">
+    <h1>INGRESAR COMO EMPLEADO</h1>
+  </div>
+</div>
+
+<div class="row centro">
+  <div class="col-lg-4 formulario-login">
+    <form action="" method="post" autocomplete="off">
+      {% for message in messages %}
+      <div class="alert alert-block alert-danger">
+        <ul class="m-0">
+          <li> {{ message }} </li>
+      </div>
+      {% endfor %}
+      </ul>
+      {% csrf_token %}
+      {{form|crispy}}
+      <button type="submit" class="btn btn-primary">Ingresar</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

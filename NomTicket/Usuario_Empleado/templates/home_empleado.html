@@ -1,0 +1,29 @@
+{% extends 'base_layout_ticket.html' %}
+{% load static %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12 estado-login">
+            <h3>Bienvenido NOMBRE USUARIO</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 titulo">
+            <h1>Lista Productos</h1>
+        </div>
+    </div>
+    <div class="row">
+        {% for producto in productos %}
+        <div class="col-lg-6" style="margin-bottom: 10px;">
+            <div class="box-element product">
+                <h6><strong>{{producto.nom_producto}}</strong></h6>
+                <hr>
+                <h6 style="font-size: 13px">{{producto.descripcion}}</h6>
+                <hr>
+
+                <button class="btn btn-primary add-btn">Añadir a carrito</button>
+                <h4 style="display: inline-block; float: right">${{producto.precio}}</h4>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

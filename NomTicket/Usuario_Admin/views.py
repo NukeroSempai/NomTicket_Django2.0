@@ -5,6 +5,7 @@ from CORE.models import EMPLEADO
 from django.contrib import messages
 from datetime import date
 from datetime import datetime
+from django.contrib.auth.hashers import make_password
 
 def inicio(request):
     return render(request, 'inicio.html')
@@ -32,6 +33,12 @@ def registrar_empleado(request, id=0):
             empleado = EMPLEADO.objects.get(pk=id)
             form = empleadoForm(request.POST,instance= empleado)
         if form.is_valid():
+            print("entra")
+            form_emp = form.save(commit=False)
+            clave = request.POST['clave']
+            print(clave)            
+            form_emp.clave = make_password(clave)
+            print(form_emp.clave)
             form.save()
             messages.success(request,"Guardado correctamente")
         return redirect('/Usuario_Admin/lista')
@@ -48,21 +55,6 @@ def logout(request):
 def home_admin(request):
     return render(request,"home_admin.html")
 
-def agregar_empleado(request):
-    
-    data = {
-        'form':empleadoForm()
-    }
-    
-    if request.method == 'POST':
-        formulario = empleadoForm(data=request.POST, files=request.FILES)
-        if formulario.is_valid():
-            formulario.save()
-            data["mensaje"] = "guardado correctamente"
-        else:
-            data["form"] = formulario
-    return render(request,'agregar_empleado.html',data)
-
 def modificar_empleado(request, id=0):
     if request.method == "GET":
         if id == 0:
@@ -78,6 +70,11 @@ def modificar_empleado(request, id=0):
             empleado = EMPLEADO.objects.get(pk=id)
             form = empleadoForm(request.POST,instance= empleado)
         if form.is_valid():
+            form_emp = form.save(commit=False)
+            clave = request.POST['clave']
+            print(clave)            
+            form_emp.clave = make_password(clave)
+            print(form_emp.clave)
             form.save()
             messages.success(request,"Modificado correctamente")
         return redirect('/Usuario_Admin/lista')

@@ -105,6 +105,23 @@ class EMPLEADO(models.Model):
     
     def __str__(self):
         return f"{self.rut_emp},{self.nom_emp},{self.appaterno_emp},{self.apmaterno_emp},{self.fk_perfil}"
+
+#**************************************************************************************************************
+class VISITANTE(models.Model):
+    rut_visitante = models.CharField("rut visitante (sin puntos con guion",primary_key=True,null=False,blank=False,max_length=10) #clave primaria
+    nombre = models.CharField("nombre",null=False,blank=False,max_length=50)
+    apellido = models.CharField("apellido",null=False,blank=False,max_length=50)
+    email = models.EmailField(max_length=100,null=True,blank=False)
+    description = models.TextField("descripcion",null=True,max_length=255)
+
+    class Meta:
+        verbose_name = 'visitante'
+        verbose_name_plural = 'visitantes'
+        db_table = 'VISITANTE'
+
+    def __str__(self):
+        return f"{self.rut_visitante},{self.nombre}"
+
 #**************************************************************************************************************
 class TICKET(models.Model):
     codigo_ticket = models.AutoField(primary_key=True)
@@ -115,6 +132,7 @@ class TICKET(models.Model):
     valor = models.PositiveIntegerField("valor ticket")
     comentario = models.TextField("comentario",null=True,blank=True,max_length=100)
     fk_codigo_emp = models.ForeignKey(EMPLEADO,on_delete=models.PROTECT,null=True) 
+    fk_rut_visitante = models.ForeignKey(VISITANTE,on_delete=models.PROTECT,null=True)
     fk_tipo_ticket = models.ForeignKey(TIPO_TICKET,on_delete=models.PROTECT,null=False)
 
     class Meta:
@@ -282,19 +300,3 @@ class DETALLE_INFORME(models.Model):
     
     def __str__(self):
         return self.id_detalle
-#**************************************************************************************************************
-class VISITANTE(models.Model):
-    rut_visitante = models.CharField("rut visitante (sin puntos con guion",primary_key=True,null=False,blank=False,max_length=10) #clave primaria
-    nombre = models.CharField("nombre",null=False,blank=False,max_length=50)
-    apellido = models.CharField("apellido",null=False,blank=False,max_length=50)
-    email = models.EmailField(max_length=100,null=True,blank=False)
-    description = models.TextField("descripcion",null=True,max_length=255)
-
-    class Meta:
-        verbose_name = 'visitante'
-        verbose_name_plural = 'visitantes'
-        db_table = 'VISITANTE'
-
-    def __str__(self):
-        return f"{self.rut_visitante},{self.nombre}"
-

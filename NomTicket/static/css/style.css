@@ -26,8 +26,8 @@ a, a:hover, a:visited{
 }
 
 .titulo{
-    margin-top: 50px;
-    height: 80px;
+    margin-top: 30px;
+    height: 50px;
 }
 
 .titulo h1{
@@ -249,6 +249,93 @@ nav.navbar {
     text-align: center;
     color:#000000;
 }
+#cart-icon{
+	width:25px;
+	display: inline-block;
+	margin-left: 15px;
+}
+.bg-dark{
+	background-color: #ff9b0d!important;
+}
+.box-element{
+	box-shadow:hsl(0, 0%, 80%) 0 0 16px;
+	background-color: #fff;
+	border-radius: 4px;
+	padding: 10px;
+}
+h1,h2,h3,h4,h5,h6{
+	color:hsl(0, 0%, 30%);
+}
+.btn-outline-dark {
+    color: #343a40;
+    border-color: #343a40;
+}
+#seleccionarproducto{
+    margin-left: auto;
+}
+#emitirticket{
+    margin-left: auto;
+}    
 /*.header .navbar {
     background-color: transparent !important;
 }*/
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 1000px; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #cerrar_modal{
+      width:min-content;
+  }
+
+  #logo_nav{
+      width: 40%;
+      height: 40%;
+  }
+
+  #cantidad_productos{
+      color:#4D4D4D;
+  }
+
+  .caja_cantidad{
+      margin:1% 1% 1% 1%; 
+  }
+
+  .turno{
+      text-align: center;
+  }

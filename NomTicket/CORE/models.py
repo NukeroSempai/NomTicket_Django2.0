@@ -111,6 +111,21 @@ class EMPLEADO(models.Model):
     def __str__(self):
         return f"{self.rut_emp},{self.nom_emp},{self.appaterno_emp},{self.apmaterno_emp},{self.fk_perfil}"
 #**************************************************************************************************************
+class VISITANTE(models.Model):
+    rut_visitante = models.CharField("rut visitante (sin puntos con guion",primary_key=True,null=False,blank=False,max_length=10) #clave primaria
+    nombre = models.CharField("nombre",null=False,blank=False,max_length=50)
+    apellido = models.CharField("apellido",null=False,blank=False,max_length=50)
+    email = models.EmailField(max_length=100,null=True,blank=False)
+    description = models.TextField("descripcion",null=True,max_length=255)
+
+    class Meta:
+        verbose_name = 'visitante'
+        verbose_name_plural = 'visitantes'
+        db_table = 'VISITANTE'
+
+    def __str__(self):
+        return f"{self.rut_visitante},{self.nombre}"
+#**************************************************************************************************************
 class TICKET(models.Model):
     codigo_ticket = models.AutoField(primary_key=True)
     fecha_imp = models.DateField("fecha impresion",auto_now=False,auto_now_add=True,null=False)
@@ -119,7 +134,8 @@ class TICKET(models.Model):
     estado = models.BooleanField("estado del ticket",default=True)
     valor = models.PositiveIntegerField("valor ticket")
     comentario = models.TextField("comentario",null=True,blank=True,max_length=100)
-    fk_codigo_emp = models.ForeignKey(EMPLEADO,on_delete=models.PROTECT,null=True) 
+    fk_codigo_emp = models.ForeignKey(EMPLEADO,on_delete=models.PROTECT,null=True)
+    fk_rut_visitante = models.ForeignKey(VISITANTE,on_delete=models.PROTECT,null=True) 
     fk_tipo_ticket = models.ForeignKey(TIPO_TICKET,on_delete=models.PROTECT,null=False)
 
     class Meta:
@@ -274,19 +290,17 @@ class INFORME_TICKET(models.Model):
     
     def __str__(self)        :
         return f"{self.correlativo_inf},{self.fecha_informe},{self.total_ventas}"
-#**************************************************************************************************************
-class VISITANTE(models.Model):
-    rut_visitante = models.CharField("rut visitante (sin puntos con guion",primary_key=True,null=False,blank=False,max_length=10) #clave primaria
-    nombre = models.CharField("nombre",null=False,blank=False,max_length=50)
-    apellido = models.CharField("apellido",null=False,blank=False,max_length=50)
-    email = models.EmailField(max_length=100,null=True,blank=False)
-    description = models.TextField("descripcion",null=True,max_length=255)
+#***************************************************************************************************************
+class PRODUCTO_TURNO(models.Model):
+    id_producto_turno = models.AutoField(primary_key=True)
+    fk_id_tipo_producto = models.ForeignKey(TIPO_PRODUCTO,on_delete=models.PROTECT,null=False)
+    fk_id_turno = models.ForeignKey(TURNO,on_delete=models.PROTECT,null=False)    
 
     class Meta:
-        verbose_name = 'visitante'
-        verbose_name_plural = 'visitantes'
-        db_table = 'VISITANTE'
+        verbose_name = 'producto_turno'
+        verbose_name_plural = 'producto_turnos'
+        db_table = 'PRODUCTO_TURNO'
 
     def __str__(self):
-        return f"{self.rut_visitante},{self.nombre}"
-
+        return f"{self.fk_id_tipo_producto},{self.fk_id_turno}"
+#***************************************************************************************************************

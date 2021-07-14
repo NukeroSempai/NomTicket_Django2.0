@@ -1,125 +1,50 @@
 {% extends "base_layout.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="row titulo">
-    <div class="titulo_texto">
-        <h1>Registrar</h1>
-    </div>
-</div>
 <div class="row">
     <div class="col-12 col-md-6 offset-md-3">
-        <form action=""class="" method="post" >
+        <div class="row titulo">
+            <div class="titulo_texto">
+                <h1>Registrar</h1>
+            </div>
+        </div>
+        <br>
+        <form action="" method="post">
             {% csrf_token %}
-            <!--{{ form | crispy}}-->
-            
-            <div id="div_id_rut_emp" class="form-group">
-                <label for="id_rut_emp" class=" requiredField">
-                    Rut empleado (sin puntos con guion)<span class="asteriskField">*</span>
-                </label>
-                <div class=""> <input type="text" name="rut_emp" maxlength="10" class="textinput textInput form-control"
-                        required oninput="checkRut(this)" id="id_rut_emp">
-                </div>
-            </div>
-            <div id="div_id_nom_emp" class="form-group">
-                <label for="id_nom_emp" class=" requiredField">
-                    Nombre<span class="asteriskField">*</span>
-                </label>
-                <div class=""> <input type="text" name="nom_emp" maxlength="30" class="textinput textInput form-control"
-                        required="" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" id="id_nom_emp">
-                </div>
-            </div>
-            <div id="div_id_appaterno_emp" class="form-group">
-                <label for="id_appaterno_emp" class=" requiredField">
-                    Apellido paterno<span class="asteriskField">*</span>
-                </label>
-                <div class=""> <input type="text" name="appaterno_emp" maxlength="30"
-                        class="textinput textInput form-control" required="" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" id="id_appaterno_emp">
-                </div>
-            </div>
-            <div id="div_id_apmaterno_emp" class="form-group">
-                <label for="id_apmaterno_emp" class=" requiredField">
-                    Apellido materno<span class="asteriskField">*</span>
-                </label>
-                <div class=""> <input type="text" name="apmaterno_emp" maxlength="30"
-                        class="textinput textInput form-control" required="" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" id="id_apmaterno_emp">
-                </div>
-            </div>
-            <div id="div_id_clave" class="form-group">
-                <label for="id_clave" class=" requiredField">
-                    Clave<span class="asteriskField">*</span>
-                </label>
-                <div class=""> <input type="password" name="clave" class="textinput textInput form-control" required=""
-                        id="id_clave">
-                </div>
-            </div>
-            <div id="div_id_saldo" class="form-group">
-                <label for="id_saldo" class=" requiredField">
-                    Cargar Saldo<span class="asteriskField">*</span>
-                </label>
-                <div class=""> <select name="saldo" class="select form-control" required="" id="id_saldo">
-                        <option value="" selected="">---------</option>
-                        <option value="264000">Administración"264000"</option>
-                        <option value="378000">Jefaturas"378000"</option>
-                        <option value="450000">Gerente"450000"</option>
-                        <option value="276000">Operarios"276000"</option>
-
-                    </select> </div>
-            </div>
-            <div id="div_id_email" class="form-group">
-                <label for="id_email" class=" requiredField">
-                    Email empleado<span class="asteriskField">*</span>
-                </label>
-                <div class=""> <input type="email" name="email" maxlength="100" class="emailinput form-control"
-                        required="" id="id_email">
-                </div>
-            </div>
-            <div id="div_id_fk_empresa" class="form-group">
-                <label for="id_fk_empresa" class=" requiredField">
-                    Empresa<span class="asteriskField">*</span>
-                </label>
-                <div class=""> <select name="fk_empresa" class="select form-control" required="" id="id_fk_empresa">
-                        <option value="" selected="">---------</option>
-                        <option value="1">Libros Impresos S.A</option>
-
-                    </select> </div>
-            </div>
-            <div id="div_id_fk_perfil" class="form-group">
-                <label for="id_fk_perfil" class=" requiredField">
-                    Perfil<span class="asteriskField">*</span>
-                </label>
-                <div class=""> <select name="fk_perfil" class="select form-control" required="" id="id_fk_perfil">
-                        <option value="" selected="">---------</option>
-                        <option value="1">Administración</option>
-                        <option value="2">Jefaturas</option>
-                        <option value="3">Gerente</option>
-                        <option value="4">Operarios</option>
-
-                    </select> </div>
-            </div>
-            <div id="div_id_fk_turno" class="form-group">
-                <label for="id_fk_turno" class=" requiredField">
-                    Turno<span class="asteriskField">*</span>
-                </label>
-                <div class=""> <select name="fk_turno" class="select form-control" required="" id="id_fk_turno">
-                        <option value="" selected="">---------</option>
-                        <option value="1">Turno AM</option>
-                        <option value="2">Turno PM</option>
-                        <option value="3">Turno NOCHE</option>
-
-                    </select> </div>
-            </div>
+            {{ form | crispy}}     
+            <br>
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-3">
                     <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>
                         Guardar</button>
                 </div>
-                <div class="col-md-4">
+                &nbsp;
+                <div class="col-md-3">
+                    <a onclick="muestraContraseña()" class="btn btn-warning btn-block btn-lg">
+                        <i class="fas fa-share"></i> Mostrar contraseña
+                    </a>
+                </div>
+                &nbsp;
+                <div class="col-md-3">
+                    <a onclick="escondeContraseña()" class="btn btn-warning btn-block btn-lg">
+                        <i class="fas fa-share"></i> Esconde contraseña
+                    </a>
+                </div>
+                &nbsp;
+                <div class="col-md-3">
+                    <a onclick="generaContraseña(10)" class="btn btn-warning btn-block btn-lg">
+                        <i class="fas fa-share"></i> Generar contraseña
+                    </a>
+                </div>
+                &nbsp;
+                <div class="col-md-3">
                     <a href="{% url 'lista_empleado' %}" class="btn btn-secondary btn-block btn-lg">
                         <i class="fas fa-stream"></i> Lista
                     </a>
                 </div>
             </div>
         </form>
+        {{mensaje}}
     </div>
 </div>    
 {% endblock content %}

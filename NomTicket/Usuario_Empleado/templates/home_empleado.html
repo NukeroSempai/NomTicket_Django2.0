@@ -13,13 +13,11 @@
         <table id='tablaemp'>
             <tbody>
                 {% for EMPLEADO in empleados %}
-                <tr>
-                    {% for message in messages %}
-                    <td>{{ message }}</td>
-                    {% endfor %}
+                <tr>                    
+                    <td>FECHA: {{ formato }}</td>
                 </tr>
                 <tr>
-                    <td>BIENVENIDO:{{EMPLEADO.nom_emp| upper}} {{ EMPLEADO.appaterno_emp| upper}}</td>
+                    <td>BIENVENIDO: {{EMPLEADO.nom_emp| upper}} {{ EMPLEADO.appaterno_emp| upper}}</td>
                 </tr>
                 <tr>
                     <td>EMPRESA: {{EMPLEADO.fk_empresa}}</td>
@@ -28,7 +26,7 @@
                     <td>CARGO: {{EMPLEADO.fk_perfil}}</td>
                 </tr>
                 <tr>
-                    <td>TURNO:{{EMPLEADO.fk_turno}}</td>
+                    <td>TURNO: {{EMPLEADO.fk_turno}}</td>
                 </tr>
                 <tr>
                     <td>SU SALDO ES: $ {{EMPLEADO.saldo}}</td>
@@ -37,13 +35,11 @@
             </tbody>
         </table>
     </div>
-    <div class="row login-status">
-        <div class="col-sm-3 boton-tickets-emitidos">
-            <a href="{% url 'empleado' %}" class="btn btn-primary ">Emitir Ticket</a>
-        </div>
-        <div class="col-sm-3 boton-tickets-emitidos">
-            <a href="{% url 'lista_productos' %}" class="btn btn-primary ">Lista Productos</a>
-        </div>
+    <!--div class="row login-status"-->
+    <div class="btn-group-vertical">
+            <a href="{% url 'lista_productos' %}" class="btn btn-warning btn-lg">Lista Productos</a>
+            <br>
+            <a href="{% url 'tickets_emitidos' %}" class="btn btn-success btn-lg">Tickets Emitidos</a>
     </div>
 </form>
 {% endblock content %}

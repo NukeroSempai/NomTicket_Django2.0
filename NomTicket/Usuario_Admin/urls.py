@@ -19,13 +19,15 @@ from .import views
 from django.contrib.auth.views import LoginView
 
 urlpatterns = [
-    path('', views.inicio,name="inicio"),
+    #path('', views.inicio,name="inicio"),
     path('registrar/', views.registrar_empleado, name="registrar_empleado"),
     #path('<int:id>/', views.registrar_empleado, name="modificar_empleado"),
-    path('delete/<int:id>/', views.eliminar_empleado, name='eliminar_empleado'),
+    path('eliminar_empleado/<id>/', views.eliminar_empleado, name='eliminar_empleado'),
     path('lista/', views.lista_empleado, name="lista_empleado"),
     path('home_admin/', views.home_admin, name="home_admin"),
     path('login_admin/',LoginView.as_view(template_name='login_admin.html'), name="login_admin"),
     path('modificar_empleado/<id>',views.modificar_empleado, name='modificar_empleado'),
-    
+    path('contacto/', views.enviarcorreo, name='contacto'),
+    path('tickets_empleados/',views.tickets_empleados,name='tickets_empleados'),
+    path('tickets_visitantes/',views.tickets_visitantes,name='tickets_visitantes'),
 ]

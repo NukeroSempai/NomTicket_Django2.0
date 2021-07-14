@@ -22,8 +22,13 @@ urlpatterns = [
     path('', views.inicio,name="inicio"),
     path('home_empleado/', views.home_empleado, name="home_empleado"),
     path('login_empleado/', views.login_empleado, name="login_empleado"),
-    path('logout/', views.logout, name="logout"),
+    path('logout/', views.logout_user, name="logout"),
     path('prueba/', views.prueba, name="prueba" ),
     path('lista_productos/', views.lista_productos, name="lista_productos"),
+    path('pedido/', views.pedido, name="pedido"),
+    path('cookie/', views.cookie, name="cookie"),
+    path('tickets_emitidos/', views.tickets_emitidos, name="tickets_emitidos"),
+    path('detalle_ticket/', views.detalle_ticket, name="detalle_ticket"),
+
     
 ]

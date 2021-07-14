@@ -4,17 +4,15 @@
 <form action="" method="post" autocomplete="off">
   {% csrf_token %}
   {{form|crispy}}
-  <div class="row centro">
-    <h1>BIENVENIDO VISITANTE</H1>
+  <div class="col-lg-12 titulo">
+    <h1>BIENVENIDO VISITANTE: {{ g_rut_visita }}</H1>
   </div>
-  <div class="row login-status">
-    <div class="col-sm-3 boton-tickets-emitidos">
-      <a href="{% url 'empleado' %}" class="btn btn-primary">Emitir Ticket</a>
-    </div>
-    <div class="col-sm-3 boton-tickets-emitidos">
-      <a href="{% url 'lista_productos' %}" class="btn btn-primary">Lista Productos</a>
-    </div>
-  </div>
+  <div class="btn-group-vertical">
+    <a href="{% url 'lista_productosv' %}" class="btn btn-warning btn-lg">Lista Productos</a>
+</div>
+  <!--div class="col-sm-3 boton-tickets-emitidos">
+    <a href="{% url 'empleado' %}" class="btn btn-primary">Emitir Ticket</a>
+  </div-->
 
 </form>
 {% endblock content %}

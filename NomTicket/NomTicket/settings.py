@@ -38,12 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'CORE',
     'Usuario_Admin',
     'Usuario_Empleado',
     'Usuario_Visita',
     'crispy_forms',
-    'tickets'
+    'tickets',
+    
 ]
 
 MIDDLEWARE = [
@@ -139,3 +141,11 @@ LOGIN_REDIRECT_URL='/Usuario_Admin/home_admin'
 LOGOUT_REDIRECT_URL='/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST="smtp.gmail.com"
+EMAIL_USE_TLS=True
+EMAIL_PORT=587
+EMAIL_HOST_USER="djangoprueba2021@gmail.com"
+EMAIL_HOST_PASSWORD="dj@ngoprueb@"
+EMAIL_DESTINO=""
